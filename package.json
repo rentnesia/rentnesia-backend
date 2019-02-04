@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:grup-gelap/rentnesia-backend.git",
-  "author": "Azerino Yogananta Gatot Subroto <azerino25@gmail.com>",
+  "author": "Furqan Maudhudy <furqanmaudhudy@gmail.com>",
   "scripts": {
-    "start" : "nodemon server.js"
+    "start": "nodemon server.js"
   },
   "license": "MIT",
   "dependencies": {

@@ -1,4 +1,4 @@
-const { User } = require('../models')
+const { user } = require('../models')
 const jwt = require('jsonwebtoken')
 
 exports.isAuthenticated = async (req, res, next) => {
@@ -11,13 +11,13 @@ exports.isAuthenticated = async (req, res, next) => {
     }
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
-    const user = await User.findOne({ where: { id: decoded.id } })
+    const User = await user.findOne({ where: { id: decoded.id } })
 
-    if (!user) {
+    if (!User) {
       return res.status(400).json({ message: 'Account not found.' })
     }
 
-    req.user = user
+    req.user = User
 
     next()
   } catch (err) {

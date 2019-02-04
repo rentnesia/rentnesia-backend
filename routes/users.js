@@ -3,8 +3,10 @@ const router = express.Router();
 
 const UserController = require("../controllers/UserController");
 const ItemController = require("../controllers/ItemController");
+const isAuthenticated = require('../middlewares').isAuthenticated
 
-router.get("/", UserController.getUser);
+
+router.get("/", isAuthenticated, UserController.getUser);
 
 router
   .route("/:id")
@@ -14,6 +16,6 @@ router
 router
   .route("/:id/item")
   .get(ItemController.getAllUserItems)
-  .post(ItemController.createNewItem);
+  .post(isAuthenticated, ItemController.createNewItem);
 
 module.exports = router;

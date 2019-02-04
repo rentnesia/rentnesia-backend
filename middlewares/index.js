@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const User = require('../models').user
+const user = require('../models').user
 
 exports.isAuthenticated = async (req, res, next) => {
   const token =
@@ -11,13 +11,13 @@ exports.isAuthenticated = async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
-    const user = await User.findOne({ where: { id: decoded.id } })
+    const User = await user.findOne({ where: { id: decoded.id } })
 
-    if (user === null) {
+    if (User === null) {
       return res.json('User NOT found !')
     }
 
-    req.user = user
+    req.user = User
     next()
   } catch (error) {
     res.json(error)

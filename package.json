@@ -1,0 +1,21 @@
+{
+  "name": "rentnesia-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:grup-gelap/rentnesia-backend.git",
+  "author": "Azerino Yogananta Gatot Subroto <azerino25@gmail.com>",
+  "scripts": {
+    "start" : "nodemon server.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "mysql2": "^1.6.4",
+    "sequelize": "^4.42.0"
+  }
+}

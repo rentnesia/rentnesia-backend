@@ -54,20 +54,3 @@ exports.createNewItem = async (req, res) => {
   }
 };
 
-// Add filter features 
-let filter = {}
-
-filter.where = {}
-Object.keys(req.query).map(key => {
-  if (key !== "limit" && key !== "offset" && key !== "sort") {
-    filter.where[key] = req.query[key]
-  }
-})
-
-models.items.findAndCountAll(filter).then(item => res.send({
-  filter: filter,
-  data: item
-})).catch(error => res.send({
-  message: "error",
-  error: error
-}))

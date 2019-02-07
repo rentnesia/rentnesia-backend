@@ -7,5 +7,10 @@ router
   .route("/")
   .post(CategoryController.createCategory)
   .get(CategoryController.getAllCategory);
-  
+
+router
+  .route("/:id")
+  .delete(CategoryController.deleteCategoryById)
+  .get(CategoryController.getAllProductById);
+
 module.exports = router;

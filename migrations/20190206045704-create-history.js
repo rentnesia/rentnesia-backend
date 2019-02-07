@@ -1,24 +1,39 @@
 "use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("product_types", {
+    return queryInterface.createTable("histories", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING
+      startDate: {
+        type: Sequelize.DATE
       },
-      category_id: {
+      endDate: {
+        type: Sequelize.DATE
+      },
+      item_id: {
         type: Sequelize.INTEGER,
         onDelete: "CASCADE",
         allowNull: false,
         references: {
-          model: "categories",
+          model: "items",
           key: "id"
         }
+      },
+      renter_id: {
+        type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
+        allowNull: false,
+        references: {
+          model: "users",
+          key: "id"
+        }
+      },
+      status: {
+        type: Sequelize.ENUM("success", "waiting", "rejected")
       },
       createdAt: {
         allowNull: false,
@@ -31,6 +46,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("product_types");
+    return queryInterface.dropTable("histories");
   }
 };

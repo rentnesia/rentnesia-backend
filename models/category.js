@@ -8,9 +8,10 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   category.associate = function(models) {
-    models.category.hasMany(models.item, {
-      foreignKey: "owner_id",
-      sourceKey: "id"
+    models.category.hasMany(models.product_type, {
+      onDelete: "CASCADE",
+      foreignKey: "category_id",
+      targetKey: "id"
     });
   };
   return category;

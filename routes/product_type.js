@@ -8,4 +8,6 @@ router
   .post(ProductTypeController.createProductType)
   .get(ProductTypeController.getAllProductType);
 
+router.route("/:id").delete(ProductTypeController.deleteProductById);
+
 module.exports = router;

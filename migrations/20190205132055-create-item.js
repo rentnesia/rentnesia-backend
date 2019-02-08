@@ -26,14 +26,6 @@ module.exports = {
       picture: {
         type: Sequelize.STRING
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
       owner_id: {
         type: Sequelize.INTEGER,
         onDelete: "CASCADE",
@@ -50,6 +42,14 @@ module.exports = {
         references: {
           model: "product_types",
           key: "id"
+        },
+        createdAt: {
+          allowNull: false,
+          type: Sequelize.DATE
+        },
+        updatedAt: {
+          allowNull: false,
+          type: Sequelize.DATE
         }
       }
     });

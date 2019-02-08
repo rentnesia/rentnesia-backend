@@ -4,18 +4,38 @@ const Category = require("../models").category;
 const User = require("../models").user;
 
 exports.getAllItems = async (req, res) => {
-  try {
-    const limit = 10; // number of records per page
-    let offset = 0;
-    const itemCount = await Item.findAndCountAll();
-    const page = req.query.page;
-    const search = req.query.search;
-    const sort_type = req.query.sort_type;
-    const sort = req.query.sort;
-    const pages = Math.ceil(itemCount.count / limit);
-    offset = limit * (page - 1);
+  if (Object.keys(req.query).length > 0) {
+    let search = req.query.search || "";
+    let sort = req.query.sort || "ASC";
 
-    const item = await Item.findAll({
+    let itemCondition = { name: { $like: `%${search}%` } };
+    let categoryCondition = {};
+
+    if (req.query.product_type) {
+      Object.assign(itemCondition, {
+        product_type_id: parseInt(req.query.product_type)
+      });
+    }
+
+    if (req.query.category) {
+      Object.assign(categoryCondition, { name: req.query.category });
+    }
+
+    Item.findAll({
+      where: itemCondition,
+      order: [["createdAt", sort]],
+      include: [
+        {
+          model: ProductType,
+          include: [{ model: Category, where: categoryCondition }]
+        },
+        User
+      ]
+    })
+      .then(item => res.status(200).json({ item }))
+      .catch(err => res.status(500).json(err));
+  } else {
+    Item.findAll({
       include: [
         {
           model: ProductType,
@@ -23,10 +43,9 @@ exports.getAllItems = async (req, res) => {
         },
         User
       ]
-    });
-    res.status(200).json({ item, limit, page, pages, offset });
-  } catch (error) {
-    res.status(500).json(error);
+    })
+      .then(item => res.status(200).json({ item }))
+      .catch(err => res.status(500).json(err));
   }
 };
 

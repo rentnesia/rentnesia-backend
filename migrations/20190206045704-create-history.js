@@ -32,6 +32,9 @@ module.exports = {
           key: "id"
         }
       },
+      location: {
+        type: Sequelize.STRING
+      },
       status: {
         type: Sequelize.ENUM("success", "waiting", "rejected")
       },

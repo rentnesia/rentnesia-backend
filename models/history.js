@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       endDate: DataTypes.DATE,
       item_id: DataTypes.INTEGER,
       renter_id: DataTypes.INTEGER,
+      location: DataTypes.STRING,
       status: DataTypes.ENUM("success", "waiting", "rejected")
     },
     {}

@@ -32,11 +32,35 @@ exports.getAllHistory = async (req, res) => {
 
 exports.getHistoryById = async (req, res) => {
   try {
-    const history = await History.findAll(
+    const history = await History.findOne(
       { include: [Item, User] },
       { where: { id: req.params.id } }
     );
     res.status(200).json({ history });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+exports.putHistoryById = async (req, res) => {
+  try {
+    History.findOne({ where: { id: req.params.id } }).then(history => {
+      if (history) {
+        return history
+          .update({ status: req.body.status })
+          .then(updated_history =>
+            res.send({
+              message: "update data success",
+              data: updated_history
+            })
+          )
+          .catch(err => Promise.reject(err));
+      } else {
+        res.send({
+          message: "data not found"
+        });
+      }
+    });
   } catch (error) {
     res.status(500).json(error);
   }

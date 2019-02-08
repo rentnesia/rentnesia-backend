@@ -8,6 +8,9 @@ router
   .get(HistoryController.getAllHistory)
   .post(HistoryController.createNewHistory);
 
-router.get("/:id", HistoryController.getHistoryById);
+router
+  .route("/:id")
+  .get(HistoryController.getHistoryById)
+  .put(HistoryController.putHistoryById);
 
 module.exports = router;

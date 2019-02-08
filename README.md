@@ -2,6 +2,12 @@
 
 Rentnesia, a web app that can make users store, borrow and rent things online in your neighborhood
 
+## Team
+
+-   [**Arsyad Sukma Ramadhan**](https://github.com/arsyadsr09) Team Leader as FullStack Developer
+-   [**Rina Hafizhah Utami**](https://github.com/rinahafizhah) as Frontend Developer
+-   [**Furqan Maudhudy**](https://github.com/fvrqan) as Backend Developer
+
 ## Tech Stack
 
 -   [**Nodejs**](http://nodejs.org/) Server Runtime Environment

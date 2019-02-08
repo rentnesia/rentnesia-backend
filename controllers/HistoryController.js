@@ -33,9 +33,20 @@ exports.getAllHistory = async (req, res) => {
 exports.getHistoryById = async (req, res) => {
   try {
     const history = await History.findOne(
-      { include: [Item, User] },
-      { where: { id: req.params.id } }
+      { where: { renter_id: req.params.id } },
+      { include: [Item, User] }
     );
+    res.status(200).json({ history });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+exports.getHistoryByUserId = async (req, res) => {
+  try {
+    const history = await History.findAll({
+      include: [{ model: Item, where: { owner_id: req.params.id } }, User]
+    });
     res.status(200).json({ history });
   } catch (error) {
     res.status(500).json(error);

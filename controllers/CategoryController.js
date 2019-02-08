@@ -32,16 +32,11 @@ exports.getAllProductById = async (req, res) => {
   try {
     const data = await ProductType.findAll({
       where: { category_id: req.params.id },
-      include: [
-        {
-          model: ProductType,
-          include: [Category]
-        },
-        User
-      ]
+      include: [Category]
     });
     res.status(200).json({ data });
   } catch (error) {
+    console.log(error);
     res.status(500).json(error);
   }
 };

@@ -16,21 +16,20 @@ exports.getAllItems = async (req, res) => {
         product_type_id: parseInt(req.query.product_type)
       });
     }
+    if (req.query.not_user) {
+      Object.assign(itemCondition, {
+        owner_id: { $not: parseInt(req.query.not_user) }
+      });
+    }
 
     if (req.query.category) {
-      Object.assign(categoryCondition, { name: req.query.category });
+      Object.assign(categoryCondition, { category_id: req.query.category });
     }
 
     Item.findAll({
       where: itemCondition,
       order: [["createdAt", sort]],
-      include: [
-        {
-          model: ProductType,
-          include: [{ model: Category, where: categoryCondition }]
-        },
-        User
-      ]
+      include: [{ model: ProductType, where: categoryCondition }, User]
     })
       .then(item => res.status(200).json({ item }))
       .catch(err => res.status(500).json(err));
@@ -51,18 +50,16 @@ exports.getAllItems = async (req, res) => {
 
 exports.getAllUserItems = async (req, res) => {
   try {
-    const item = await Item.findAll(
-      { where: { owner_id: req.params.id } },
-      {
-        include: [
-          {
-            model: ProductType,
-            include: [Category]
-          },
-          User
-        ]
-      }
-    );
+    const item = await Item.findAll({
+      where: { owner_id: req.params.id },
+      include: [
+        {
+          model: ProductType,
+          include: [Category]
+        },
+        User
+      ]
+    });
     res.status(200).json({ item });
   } catch (error) {
     res.status(500).json(error);

@@ -56,12 +56,11 @@ For Example: `http://localhost:8000/api/v1/users`
 
 ### Authentication
 
-| Endpoint           | HTTP | Description          | Body                               |
-| ------------------ | ---- | -------------------- | ---------------------------------- |
-| `/auth/login`      | POST | Sign in users        | `username or email, password`      |
-| `/auth/signup`     | POST | Sign up users        | `username, email, password, role`  |
-| `/auth/verify`     | GET  | Verify users         | `token`                            |
-
+| Endpoint       | HTTP | Description    | Body                               |
+| -------------- | ---- | ---------------| ---------------------------------- |
+| `/auth/login`  | POST | Sign in users  | `username or email, password`      |
+| `/auth/signup` | POST | Sign up users  | `username, email, password, role`  |
+| `/auth/verify` | GET  | Verify users   | `token`                            |
 
 ### Items
 
@@ -74,15 +73,39 @@ For Example: `http://localhost:8000/api/v1/users`
 | `/items/:id`       | PUT  | Update item by id           |
 | `/items/:id`       | DEL  | Delete item by id           |
 
-
 ### Users
 
-| Endpoint                 | HTTP   | Description                 |
-| ------------------------ | ------ | --------------------------- |
-| `/users/`                | GET    | Get all users               |
-| `/users/:id`             | GET    | Get one user by id          |
-| `/users/:id`             | PUT    | Update user profile         |
-| `/users/:id`             | DELETE | Delete user profile by id   |
+| Endpoint     | HTTP   | Description               |
+| ------------ | ------ | ------------------------- |
+| `/users/`    | GET    | Get all users             |
+| `/users/:id` | GET    | Get one user by id        |
+| `/users/:id` | PUT    | Update user profile       |
+| `/users/:id` | DELETE | Delete user profile by id |
+
+
+### Product Type
+
+| Endpoint            | HTTP | Description               |
+| ------------------- | ---- | ------------------------- |
+| `/product_type/`    | POST | Create a new product type |
+| `/product_type/`    | GET  | Get all product types     |
+| `/product_type/:id` | DEL  | Delete product type by id |
+
+### Category
+
+| Endpoint        | HTTP | Description           |
+| --------------- | ---- | --------------------- |
+| `/category/`    | POST | Create a new category |
+| `/category/`    | GET  | Get all categories    |
+| `/category/:id` | DEL  | Delete category by id |
+
+### History
+
+| Endpoint       | HTTP | Description          |
+| -------------- | ---- | -------------------- |
+| `/history/`    | POST | Create a new history |
+| `/history/`    | GET  | Get all histories    |
+| `/history/:id` | DEL  | Delete history by id |
 
 ## License
 

@@ -48,60 +48,41 @@ Install: `POSTMAN` or `INSOMNIA` to test API
 
 Run: `npm run start` or `yarn start` to run server
 
-## API Endpoints
+## API Endpoints Version 1
+
+Run with: `/api/v1/` 
+Root URL: `http://localhost:8000`
+For Example: `http://localhost:8000/api/v1/users` 
 
 ### Authentication
 
-`Authorization: Bearer jwt.token.here`
+| Endpoint           | HTTP | Description          | Body                               |
+| ------------------ | ---- | -------------------- | ---------------------------------- |
+| `/auth/login`      | POST | Sign in users        | `username or email, password`      |
+| `/auth/signup`     | POST | Sign up users        | `username, email, password, role`  |
+| `/auth/verify`     | GET  | Verify users         | `token`                            |
 
-Root URL: `http://localhost:8000`
 
 ### Items
 
 | Endpoint           | HTTP | Description                 |
 | ------------------ | ---- | --------------------------- |
+| `/items`           | POST | Create a new item           |
 | `/items`           | GET  | Get all items               |
 | `/items/:id`       | GET  | Get item by id              |
 | `/items/search?q=` | GET  | Search item data by keyword |
-| `/items`           | POST | Insert a new item           |
-| `/items/:id`       | DEL  | Delete item by id           |
 | `/items/:id`       | PUT  | Update item by id           |
+| `/items/:id`       | DEL  | Delete item by id           |
 
-### Role:Customer Request Things to Pick-up
-
-| Endpoint        | HTTP   | Description                        |
-| --------------- | ------ | ---------------------------------- |
-| `/requests/`    | GET    | Get all requests                   |
-| `/requests/:id` | GET    | Get one request by id              |
-| `/requests/:id` | POST   | Create a new pick-up request by id |
-| `/requests/:id` | DELETE | Delete request by id               |
-
-### Rent or Store Payment
-
-| Endpoint        | HTTP | Description           |
-| --------------- | ---- | --------------------- |
-| `/payments/`    | GET  | Get all payments      |
-| `/payments/:id` | GET  | Get one payment by id |
-
-### Role:Customer Borrow Things to Other Customer
-
-| Endpoint        | HTTP   | Description                        |
-| --------------- | ------ | ---------------------------------- |
-| `/requests/`    | GET    | Get all requests                   |
-| `/requests/:id` | GET    | Get one request by id              |
-| `/requests/:id` | POST   | Create a new pick-up request by id |
-| `/requests/:id` | DELETE | Delete request by id               |
 
 ### Users
 
-| Endpoint                 | HTTP | Description                             |
-| ------------------------ | ---- | --------------------------------------- |
-| `/users/`                | GET  | Get all users                           |
-| `/users/:id`             | GET  | Get one user by id                      |
-| `/users/register`        | POST | Create sign up form by email validation |
-| `/users/forgot_password` | POST | Forgot password                         |
-| `/users/login`           | POST | Create login user                       |
-| `/users/:id`             | PUT  | Update user profile                     |
+| Endpoint                 | HTTP   | Description                 |
+| ------------------------ | ------ | --------------------------- |
+| `/users/`                | GET    | Get all users               |
+| `/users/:id`             | GET    | Get one user by id          |
+| `/users/:id`             | PUT    | Update user profile         |
+| `/users/:id`             | DELETE | Delete user profile by id   |
 
 ## License
 

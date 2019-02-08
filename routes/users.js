@@ -8,9 +8,10 @@ const isAuthenticated = require("../middlewares").isAuthenticated;
 router.get("/", UserController.getUser);
 
 router
-  .route("/:id")
+  .route('/:id')
   .get(isAuthenticated, UserController.getUserById)
-  .delete(isAuthenticated, UserController.deleteUserById);
+  .put(isAuthenticated, UserController.updateUserById)
+  .delete(isAuthenticated, UserController.deleteUserById)
 
 router
   .route("/:id/item")

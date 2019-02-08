@@ -31,7 +31,14 @@ exports.deleteCategoryById = async (req, res) => {
 exports.getAllProductById = async (req, res) => {
   try {
     const data = await ProductType.findAll({
-      where: { category_id: req.params.id }
+      where: { category_id: req.params.id },
+      include: [
+        {
+          model: ProductType,
+          include: [Category]
+        },
+        User
+      ]
     });
     res.status(200).json({ data });
   } catch (error) {

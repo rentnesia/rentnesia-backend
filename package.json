@@ -5,7 +5,8 @@
   "repository": "git@github.com:grup-gelap/rentnesia-backend.git",
   "author": "Furqan Maudhudy <furqanmaudhudy@gmail.com>",
   "scripts": {
-    "start": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "license": "MIT",
   "dependencies": {
